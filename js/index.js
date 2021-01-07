@@ -30,8 +30,46 @@ window.addEventListener("DOMContentLoaded", async (e) => {
   querySnapshot = await getComidas();
   CrearCajasDeProductos();
   FiltrosDeCategoria();
+  var catergorias = document.querySelectorAll('.categoriaselect')
+  console.log(catergorias);  
+  catergorias.forEach(function (item) {
+  item.addEventListener('click', function () {
+  categoriaseleccionada = item.dataset.categoria2
+  console.log(categoriaseleccionada);
+      $("#productos").empty()
 
-
+      querySnapshot.forEach((doc) => {
+        contenedorDeProdutcotos = $("#productos");
+        var comida = doc.data().name;
+        var categoria2 = doc.data().categoria2;
+        var precioXUnidad = doc.data().precioXUnidad;
+        var precioXDocena = doc.data().precioXDocena;
+        var img = doc.data().img;
+        var texXunidad = `
+        <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card h-100">
+          <a href="#"><img class="card-img-top" src="${img}" alt="img"></a>
+          <div class="card-body">
+            <h4 class="card-title">
+              <a href="#">${comida}</a>
+            </h4>
+            <h5>$${precioXUnidad}</h5>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!
+            </p>
+          </div>
+    
+        </div>
+      </div>
+      `;
+      if (categoriaseleccionada == categoria2 ){
+        contenedorDeProdutcotos.append(texXunidad);
+      }
+      else if(categoriaseleccionada== 'all' ){
+        contenedorDeProdutcotos.append(texXunidad);
+      }
+      });
+    })
+  })
 });
 
 function CrearCajasDeProductos() {
@@ -72,48 +110,5 @@ function FiltrosDeCategoria() {
       .append(`<p class="list-group-item categoriaselect" data-categoria2="${e}">${e}</p>
     `);
   });
-  var catergorias = document.querySelectorAll('.categoriaselect')
-  console.log(catergorias);
-  
-  catergorias.forEach(function (item) {
-    item.addEventListener('click', function () {FiltrarCategoria()
-      categoriaseleccionada = item.dataset.categoria2})
-  })
-}
 
-
-function FiltrarCategoria() {
-  console.log(categoriaseleccionada);
-      $("#productos").empty()
-
-      querySnapshot.forEach((doc) => {
-        contenedorDeProdutcotos = $("#productos");
-        var comida = doc.data().name;
-        var categoria2 = doc.data().categoria2;
-        var precioXUnidad = doc.data().precioXUnidad;
-        var precioXDocena = doc.data().precioXDocena;
-        var img = doc.data().img;
-        var texXunidad = `
-        <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="${img}" alt="img"></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="#">${comida}</a>
-            </h4>
-            <h5>$${precioXUnidad}</h5>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!
-            </p>
-          </div>
-    
-        </div>
-      </div>
-      `;
-      if (categoriaseleccionada == categoria2 ){
-        contenedorDeProdutcotos.append(texXunidad);
-      }
-      else if(categoriaseleccionada== 'all' ){
-        contenedorDeProdutcotos.append(texXunidad);
-      }
-      });
 }
