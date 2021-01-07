@@ -69,7 +69,7 @@ function FiltrosDeCategoria() {
   });
   arrayDeCategoria2.unique().forEach((e) => {
     $("#categorias")
-      .append(`<a class="list-group-item categoriaselect" data-categoria2="${e}">${e}</a>
+      .append(`<p class="list-group-item categoriaselect" data-categoria2="${e}">${e}</p>
     `);
   });
   var catergorias = document.querySelectorAll('.categoriaselect')
