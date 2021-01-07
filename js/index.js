@@ -10,10 +10,16 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
-const db = firebase.firestore()
+const db = firebase.firestore();
+var comida;
+var categoria1;
+var categoria2;
+var precioXUnidad;
+var precioXDocena;
+var img;
 const getComidas = () => db.collection('Productos').get();
 window.addEventListener('DOMContentLoaded', async (e) => {
-    querySnapshot = await getComidas()
+    querySnapshot = await getComidas();
     querySnapshot.forEach(doc => {
         var contenedorDeProdutcotos = $('#productos')
         var comida = doc.data().name

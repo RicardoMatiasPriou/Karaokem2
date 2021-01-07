@@ -4,4 +4,9 @@ body {
 body
 {
   background-image: url(https://www.ecestaticos.com/imagestatic/clipping/0d6/464/0d6464658cec8e7d7f997affb0e5de76/las-normas-de-etiqueta-que-debes-seguir-si-quieres-triunfar-en-la-fiesta-de-nochevieja.jpg?mtime=1579565836);
+  background-attachment: fixed;
+}
+h1,h3 
+{
+color: white;
 }
